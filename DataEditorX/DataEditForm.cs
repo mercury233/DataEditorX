@@ -23,6 +23,7 @@ namespace DataEditorX
 {
 	public partial class DataEditForm : DockContent, IDataForm
 	{
+		int DEF_ROW_COUNT = 30;
 		#region 成员变量/构造
 		TaskHelper tasker = null;
 		string taskname;
@@ -73,18 +74,20 @@ namespace DataEditorX
 			Initialize(datapath);
 		}
 		public DataEditForm()
-		{//默认启动
+		{
 			string dir = MyConfig.readString(MyConfig.TAG_DATA);
 			if (string.IsNullOrEmpty(dir))
 			{
 				Application.Exit();
 			}
 			datapath = MyPath.Combine(Application.StartupPath, dir);
-
+			//默认启动
 			Initialize(datapath);
 		}
+		
 		void Initialize(string datapath)
 		{
+			DEF_ROW_COUNT = MyConfig.readInteger(MyConfig.TAG_LIST_ROW, DEF_ROW_COUNT);
 			cardedit = new CardEdit(this);
 			tmpCodes = new List<string>();
 			ygopath = new YgoPath(Application.StartupPath);
@@ -347,6 +350,10 @@ namespace DataEditorX
 		//计算list最大行数
 		void InitListRows()
 		{
+			if(DEF_ROW_COUNT >0 ){
+				MaxRow = DEF_ROW_COUNT;
+				return;
+			}
 			bool addTest = lv_cardlist.Items.Count == 0;
 			if (addTest)
 			{

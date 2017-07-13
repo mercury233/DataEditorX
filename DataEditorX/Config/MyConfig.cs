@@ -32,6 +32,11 @@ namespace DataEditorX.Config
         /// 数据目录
         /// </summary>
         public const string TAG_DATA = "data";
+        
+        /// <summary>
+        /// 行数
+        /// </summary>
+        public const string TAG_LIST_ROW ="list_row";
         /// <summary>
         /// 将要打开
         /// </summary>

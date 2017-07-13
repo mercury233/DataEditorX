@@ -1,4 +1,8 @@
 ﻿★更新历史
+2.4.3.7
+自定义行数
+		<!-- card list row count -->
+		<add key="list_row" value="30" />
 2.4.3.6
 UI位置调整
 2.4.3.5
