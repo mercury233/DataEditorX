@@ -94,6 +94,7 @@ namespace DataEditorX.Language
 		PlzRestart = 0x49,
 		exportMseImages = 0x4a,
 		exportMseImagesErr = 0x4b,
+        UndoConfirm = 0x4e,
         COUNT,
     }
 }

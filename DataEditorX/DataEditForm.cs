@@ -831,6 +831,10 @@ namespace DataEditorX
 		//撤销
 		void Btn_undoClick(object sender, EventArgs e)
 		{
+			if (!MyMsg.Question(LMSG.UndoConfirm))
+			{
+				return;
+			}
 			if (cardedit != null)
 			{
 				cmdManager.Undo();
