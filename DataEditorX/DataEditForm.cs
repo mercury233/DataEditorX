@@ -241,6 +241,10 @@ namespace DataEditorX
 			if (cdb.Length > 0)
 			{
 				path = Path.GetDirectoryName(cdb);
+                if (!File.Exists(Path.Combine(path, "pics")) && path.EndsWith("expansions"))
+                {
+					path = Directory.GetParent(path).FullName;
+                }
 			}
 			ygopath.SetPath(path);
 		}
