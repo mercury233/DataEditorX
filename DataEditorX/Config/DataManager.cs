@@ -23,7 +23,7 @@ namespace DataEditorX.Config
         /// <summary>
         /// 内容结尾
         /// </summary>
-        public const string TAG_END = "#";
+        public const string TAG_END = "##";
         /// <summary>
         /// 行分隔符
         /// </summary>
@@ -92,8 +92,15 @@ namespace DataEditorX.Config
             {
                 if (line.StartsWith("#"))
                     continue;
-                string[] words = line.Split(SEP_LINE);
-                if (words.Length < 2)
+                var words = new List<string>(line.Split(SEP_LINE));
+                var match = Regex.Match(line, @"!setname (0x[\da-f]+) ([^\t\|]+)");
+                if (match.Success)
+                {
+                    words.Clear();
+                    words.Add(match.Groups[1].Value);
+                    words.Add(match.Groups[2].Value);
+                }
+                if (words.Count < 2)
                     continue;
                 if (words[0].StartsWith("0x"))
                     long.TryParse(words[0].Replace("0x", ""), NumberStyles.HexNumber, null, out lkey);
